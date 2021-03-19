@@ -29,7 +29,7 @@ async def on_message(message):
         await channel.send('''```
 !waldohelp(!help) : 이것은 보여주다 너에게 도움말
 
-!waldolink(!link) : 이것은 보여주다 연락 수단 에게 개발자 의 왈도 번역기
+!waldolink(!link) : 이것은 보여주다 연락 수단 에게 개발자 의 왈도 번역기 그리고 초대 연결 의 왈도 번역
 
 !waldohello(!hello) : 이것은 하다 인사
 
@@ -45,6 +45,7 @@ async def on_message(message):
 
     if message.content.startswith('!waldolink') or message.content.startswith('!link'):
         await channel.send('연락 수단 에게 개발자 의 왈도 번역기: https://discord.gg/UQMPMpGcbG')
+        await channel.send('초대 연결 의 왈도 번역기: http://bit.ly/번역하다왈도체')
 
     if message.content.startswith('!waldotrans ') or message.content.startswith('!trans '):
         await channel.send('하다 번역 작업, 제발 기다리다...')
