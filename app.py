@@ -36,8 +36,8 @@ async def on_message(message):
 !waldotrans(!trans) <한국어 문장> : 이것은 번역하다 너의 언어 를 나의 언어 로
 
 !waldomode(!mode) [1/2] : 이것은 번역하다 다양한 말투
-    1(기본의) : 역겨운
-    2 : 자연스러운
+    1(기본의) : 자연스러운
+    2 : 역겨운
 ```''')
 
     if message.content.startswith('!waldohello') or message.content.startswith('!hello'):
