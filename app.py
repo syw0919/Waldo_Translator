@@ -22,8 +22,8 @@ async def on_message(message):
     channel = message.channel
     
     # 메세지를 보낸 사람이 봇일 경우 무시한다
-    if message.author.bot:
-        return None
+#    if message.author.bot:
+#        return None
 
     if message.content.startswith('!waldohelp') or message.content.startswith('!help'):
         await channel.send('''```
