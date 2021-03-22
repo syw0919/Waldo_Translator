@@ -118,8 +118,7 @@ async def on_message(message):
             else:
                 await channel.send('그 입력 은 잘못된 형태의!')
         else:
-            print('지금 말투: ', end='')
-            print('자연스러운' if mode == 1 else '역겨운')
+            await channel.send('지금 말투: {}'.format('자연스러운' if mode == 1 else '역겨운'))
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
