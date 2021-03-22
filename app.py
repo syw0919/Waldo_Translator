@@ -22,13 +22,14 @@ async def on_message(message):
     channel = message.channel
     
     # 메세지를 보낸 사람이 봇일 경우 무시한다
-#    if message.author.bot:
-#        return None
+    #if message.author.bot:
+    #    return None
 
     f = open('log.txt', 'a')
 
     if message.content.startswith('!waldohelp') or message.content.startswith('!help'):
-        await channel.send('''```
+        await channel.send('''
+```
 !waldohelp(!help) : 이것은 보여주다 너에게 도움말
 
 !waldolink(!link) : 이것은 보여주다 연락 수단 에게 개발자 의 왈도 번역기 그리고 초대 연결 의 왈도 번역
@@ -40,7 +41,8 @@ async def on_message(message):
 !waldomode(!mode) [1/2] : 이것은 번역하다 다양한 말투
     1(기본의) : 자연스러운
     2 : 역겨운
-```''')
+```
+''')
 
         f.write('[ {} ]\n{}\n\n'.format(message.author, message.content))
 
