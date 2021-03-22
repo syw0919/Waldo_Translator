@@ -104,7 +104,7 @@ async def on_message(message):
     if message.content.startswith('!waldomode') or message.content.startswith('!mode'):
         messagelist = message.content.split(' ')
         
-        if len(messagelist) > 2:
+        if len(messagelist) > 1:
             val = messagelist[1]
 
             if val == '1':
