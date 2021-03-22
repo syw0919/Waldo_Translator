@@ -101,19 +101,25 @@ async def on_message(message):
         print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, date.hour, date.minute, date.second))
         print(message.content)
 
-    if message.content.startswith('!waldomode ') or message.content.startswith('!mode '):
-        val = message.content.split(' ')[1]
+    if message.content.startswith('!waldomode') or message.content.startswith('!mode'):
+        messagelist = message.content.split(' ')
+        
+        if len(messagelist) > 2:
+            val = messagelist[1]
 
-        if val == '1':
-            mode = 1
-            await channel.send('바꾸다 말투 자연스러운')
-            
-        elif val == '2':
-            mode = 2
-            await channel.send('바꾸다 말투 역겨운')
-            
+            if val == '1':
+                mode = 1
+                await channel.send('바꾸다 말투 자연스러운')
+                
+            elif val == '2':
+                mode = 2
+                await channel.send('바꾸다 말투 역겨운')
+                
+            else:
+                await channel.send('그 입력 은 잘못된 형태의!')
         else:
-            await channel.send('그 입력 은 잘못된 형태의!')
+            print('지금 말투: ', end='')
+            print('자연스러운' if mode == 1 else '역겨운')
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
