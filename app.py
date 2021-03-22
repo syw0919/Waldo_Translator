@@ -42,10 +42,14 @@ async def on_message(message):
 
     if message.content.startswith('!waldohello') or message.content.startswith('!hello'):
         await channel.send('안녕하신가! 힘세고 강한 아침, 만일 내게 물어보면,\n나는 왈도.')
+        print(message.author)
+        print(message.content)
 
     if message.content.startswith('!waldolink') or message.content.startswith('!link'):
         await channel.send('연락 수단 에게 개발자 의 왈도 번역기: https://discord.gg/UQMPMpGcbG')
         await channel.send('초대 연결 의 왈도 번역기: http://bit.ly/번역하다왈도체')
+        print(message.author)
+        print(message.content)
 
     if message.content.startswith('!waldotrans ') or message.content.startswith('!trans '):
         await channel.send('하다 번역 작업, 제발 기다리다...')
@@ -78,6 +82,9 @@ async def on_message(message):
             ktext = ' '.join(ktextlist).replace('...', '').replace('ㅏ', '하나의')
         
             await channel.send(f'```\n{ktext}\n```')
+            
+        print(message.author)
+        print(message.content)
 
     if message.content.startswith('!waldomode ') or message.content.startswith('!mode '):
         val = message.content.split(' ')[1]
@@ -92,5 +99,8 @@ async def on_message(message):
             
         else:
             await channel.send('그 입력 은 잘못된 형태의!')
+            
+        print(message.author)
+        print(message.content)
 
 client.run(os.environ['token'])
