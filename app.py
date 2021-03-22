@@ -105,4 +105,6 @@ async def on_message(message):
 
         f.write('[ {} ]\n{}\n\n'.format(message.author, message.content))
 
+    f.close()
+
 client.run(os.environ['token'])
