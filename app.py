@@ -30,7 +30,8 @@ async def on_message(message):
 ```
 !waldohelp(!help) : 이것은 보여주다 너에게 도움말
 
-!waldolink(!link) : 이것은 보여주다 연락 수단 에게 개발자 의 왈도 번역기 그리고 초대 연결 의 왈도 번역
+!waldolink(!link) : 이것은 보여주다 연락 수단 에게 개발자 의 왈도 번역기
+                    그리고 초대 연결 의 왈도 번역기
 
 !waldohello(!hello) : 이것은 하다 인사
 
@@ -40,7 +41,7 @@ async def on_message(message):
     1(기본의) : 자연스러운
     2 : 역겨운
 ```
-''')
+        ''')
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
