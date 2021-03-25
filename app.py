@@ -126,7 +126,7 @@ async def on_message(message):
         print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, date.hour, date.minute, date.second))
         print(message.content)
 
-    if message.content.startswith('!waldolink') or message.content.startswith('!link'):
+    if message.content.startswith('!자가진단'):
         await channel.send('실행 자가진단 매크로')
         os.system('python macro.py')
         await channel.send('종료 자가진단 매크로')
