@@ -126,4 +126,12 @@ async def on_message(message):
         print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, date.hour, date.minute, date.second))
         print(message.content)
 
+    if message.content.startswith('!자가진단'):
+        os.system("python macro.py")
+
+        date = message.created_at
+        print('[ {} ]'.format(message.author))
+        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, date.hour, date.minute, date.second))
+        print(message.content)
+
 client.run(os.environ['token'])

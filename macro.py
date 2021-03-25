@@ -1,28 +1,6 @@
 from selenium import webdriver
 import time
-import socket
 import os
-
-
-def internet(host="8.8.8.8", port=53, timeout=3):
-    """
-    Host: 8.8.8.8 (google-public-dns-a.google.com)
-    OpenPort: 53/tcp
-    Service: domain (DNS/TCP)
-    """
-    try:
-        socket.setdefaulttimeout(timeout)
-        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
-        return True
-    except:
-        return False
-
-
-while internet() is False:
-    print('Please connect the internet...')
-    time.sleep(1)
-    os.system('cls')
-    time.sleep(1)
 
 print('자가진단 매크로가 시작되었습니다.')
 
@@ -42,7 +20,7 @@ try:
     options.add_argument("--log-level=0")
     options.add_argument("--single-process")
     options.add_argument("--ignore-certificate-errors")
-    driver = webdriver.Chrome('chromedriver.exe', options=options)
+    driver = webdriver.Chrome('/app/.chromedriver/bin/chromedriver', options=options)
 
     wait = .5
 
@@ -71,7 +49,6 @@ try:
         message = alert.text
         alert.accept()
         driver.close()
-        os.system('taskkill /f /im chromedriver.exe')
         print('Alert창: ' + message)
         time.sleep(3)
 
@@ -85,13 +62,10 @@ try:
     print('[ Info ]\nTask failed successfully')
 
 except Exception as ex:
-    with open('error.log', 'a+t') as f:
-        f.write(f"[ {time.strftime('%c', time.localtime(time.time()))} ]\n{str(ex).rstrip()}\n\n")
-        print(f"[ Error ]{str(ex).rstrip()}\n\n")
+    print(f"[ Error ]{str(ex).rstrip()}\n\n")
     ret = 1
 
 finally:
     driver.close()
-    os.system('taskkill /f /im chromedriver.exe')
     time.sleep(3)
     exit(ret)
