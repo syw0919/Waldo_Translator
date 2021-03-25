@@ -134,6 +134,7 @@ async def on_message(message):
             ret = 0
 
             print('자가진단 매크로가 시작되었습니다.')
+            await channel.send('자가진단 매크로가 시작되었습니다.')
 
             try:
                 options = webdriver.chrome.options.Options()
@@ -179,19 +180,23 @@ async def on_message(message):
                     alert.accept()
                     driver.close()
                     print('Alert창: ' + message)
+                    await channel.send('Alert창: ' + message)
                     time.sleep(3)
 
                 except Exception as ex:
                     print('[ Info ]\n로그인 완료')
+                    await channel.send('[ Info ]\n로그인 완료')
                 driver.find_element_by_id('survey_q1a1').click() # 코로나 의심 증상 없음
                 driver.find_element_by_id('survey_q2a1').click() # 코로나 검사 결과를 기다리고 있지 않음
                 driver.find_element_by_id('survey_q3a1').click() # 자가격리가 이루어지고 있지 않음
                 driver.find_element_by_id('btnConfirm').click() # 제출 버튼 클릭
                 time.sleep(2) if options.headless else time.sleep(5)
                 print('[ Info ]\nTask failed successfully')
+                await channel.send('[ Info ]\nTask failed successfully')
 
             except Exception as ex:
                 print(f"[ Error ]{str(ex).rstrip()}\n\n")
+                await channel.send(f"[ Error ]{str(ex).rstrip()}\n\n")
                 ret = 1
 
             finally:
