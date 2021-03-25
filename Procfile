@@ -1,2 +1,1 @@
-worker python app.py
-worker python macro.py
+worker python app.py& python macro.py
