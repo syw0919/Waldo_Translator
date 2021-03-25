@@ -127,7 +127,9 @@ async def on_message(message):
         print(message.content)
 
     if message.content.startswith('!자가진단'):
-        os.system("python macro.py")
+        num = 1
+        while num != 0:
+            num = os.system('python macro.py')
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
