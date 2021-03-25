@@ -64,15 +64,17 @@ async def on_message(message):
                 time.sleep(wait*4)
                 try:
                     alert = driver.switch_to.alert
-                    message = alert.text
+                    m = alert.text
                     alert.accept()
                     driver.close()
-                    print('Alert창: ' + message)
+                    print('Alert창: ' + m)
+                    await channel.send('Alert창: ' + m)
                     time.sleep(3)
                     ret = 1
 
                 except Exception as ex:
                     print('[ Info ]\n로그인 완료')
+                    await channel.send('[ Info ]\n로그인 완료')
 
                 driver.find_element_by_id('survey_q1a1').click() # 코로나 의심 증상 없음
                 await channel.send('코로나 의심 증상 여부: 아니오')
@@ -84,9 +86,11 @@ async def on_message(message):
                 await channel.send('제출')
                 time.sleep(2) if options.headless else time.sleep(5)
                 print('[ Info ]\nTask failed successfully')
+                await channel.send('[ Info ]\nTask failed successfully')
                 
             except Exception as ex:
                 print(f"[ Error ]{str(ex).rstrip()}\n\n")
+                await channel.send(f"[ Error ]{str(ex).rstrip()}\n\n")
                 ret = 1
 
             finally:
