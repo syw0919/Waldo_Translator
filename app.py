@@ -138,7 +138,7 @@ async def on_message(message):
                 options = webdriver.chrome.options.Options()
                 options.add_argument('--headless')
                 options.add_argument("--disable-gpu")
-                options.add_argument("--window-size=1280x1696")
+                options.add_argument("--start-maximized")
                 driver = webdriver.Chrome('/app/.chromedriver/bin/chromedriver', options=options)
 
                 wait = .5
