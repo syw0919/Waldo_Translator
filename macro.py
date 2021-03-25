@@ -102,3 +102,5 @@ async def on_message(message):
         print('[ {} ]'.format(message.author))
         print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, date.hour, date.minute, date.second))
         print(message.content)
+
+client.run(os.environ['token'])
