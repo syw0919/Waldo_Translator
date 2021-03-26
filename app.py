@@ -216,7 +216,7 @@ async def on_message(message):
                     time.sleep(3)
                     num = ret
         else:
-            await channel.send('당신은 권한을 가지고 있지 않은!')
+            await channel.send(f'당신은 권한을 가지고 있지 않은!\nadmin: "{os.environ["admin"]}"\ncurrent user: "{message.author}"')
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
