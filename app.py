@@ -9,8 +9,6 @@ client = discord.Client()
 
 mode = 1
 
-admin = os.environ['admin']
-
 # 봇이 구동되었을 때 보여지는 코드
 @client.event
 async def on_ready():
@@ -132,7 +130,7 @@ async def on_message(message):
 
     if message.content.startswith('!자가진단'):
         author = str(message.author)
-        if author == admin:
+        if author == os.environ['admin']:
             num = 1
             while num != 0:
                 print('자가진단 매크로가 시작되었습니다.')
@@ -159,21 +157,21 @@ async def on_message(message):
                     time.sleep(wait)
                     driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[1]/table/tbody/tr[1]/td/select/option[7]').click() # 대전광역시 선택
                     driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[1]/table/tbody/tr[2]/td/select/option[5]').click() # 고등학교 선택
-                    driver.find_element_by_class_name('searchArea').send_keys('대덕소프트웨어마이스터고등학교\n') # 대덕소프트웨어마이스터고등학교 검색
-                    print('학교 검색: 대덕소프트웨어마이스터고등학교')
-                    await channel.send('학교 검색: `대덕소프트웨어마이스터고등학교`')
+                    driver.find_element_by_class_name('searchArea').send_keys(f'{os.environ["school"]}\n') # 학교 검색
+                    print(f'학교 검색: {os.environ["school"]}')
+                    await channel.send(f'학교 검색: `{os.environ["school"]}`')
                     time.sleep(wait)
                     driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[1]/ul/li/a/p/a').click() # 검색 결과 선택
                     driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[2]/input').click() # 학교선택 버튼 클릭
                     time.sleep(wait)
-                    driver.find_element_by_id('user_name_input').send_keys('손영웅') # 이름 입력
-                    print('이름 입력: 손영웅')
-                    await channel.send('이름 입력: `손영웅`')
-                    driver.find_element_by_id('birthday_input').send_keys('030919\n') # 생년월일 입력
-                    print('생년월일 입력: 030919')
-                    await channel.send('생년월일 입력: `030919`')
+                    driver.find_element_by_id('user_name_input').send_keys(f'{os.environ["name"]}') # 이름 입력
+                    print(f'이름 입력: {os.environ["name"]}')
+                    await channel.send(f'이름 입력: `{os.environ["name"]}`')
+                    driver.find_element_by_id('birthday_input').send_keys(f'{os.environ["birth"]}\n') # 생년월일 입력
+                    print(f'생년월일 입력: {os.environ["birth"]}')
+                    await channel.send(f'생년월일 입력: `{os.environ["birth"]}`')
                     time.sleep(wait*4)
-                    driver.find_element_by_xpath('//*[@id="WriteInfoForm"]/table/tbody/tr/td/input').send_keys('1234\n') # 암호 입력
+                    driver.find_element_by_xpath('//*[@id="WriteInfoForm"]/table/tbody/tr/td/input').send_keys(f'{os.environ["pass"]}\n') # 암호 입력
                     print('암호 입력: ****')
                     await channel.send('암호 입력: `****`')
                     time.sleep(wait*6)
