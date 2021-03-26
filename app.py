@@ -129,7 +129,7 @@ async def on_message(message):
         print(message.content)
 
     if message.content.startswith('!자가진단'):
-        if message.author is os.environ['admin']:
+        if message.author.startswith(os.environ['admin']):
             num = 1
             while num != 0:
                 print('자가진단 매크로가 시작되었습니다.')
