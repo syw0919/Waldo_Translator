@@ -47,7 +47,7 @@ async def on_message(message):
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
-        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, date.hour, date.minute, date.second))
+        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, (date.hour+9)%24, date.minute, date.second))
         print(message.content)
 
     if message.content.startswith('!waldohello') or message.content.startswith('!hello'):
@@ -55,7 +55,7 @@ async def on_message(message):
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
-        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, date.hour, date.minute, date.second))
+        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, (date.hour+9)%24, date.minute, date.second))
         print(message.content)
 
     if message.content.startswith('!waldolink') or message.content.startswith('!link'):
@@ -64,7 +64,7 @@ async def on_message(message):
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
-        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, date.hour, date.minute, date.second))
+        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, (date.hour+9)%24, date.minute, date.second))
         print(message.content)
 
     if message.content.startswith('!waldotrans ') or message.content.startswith('!trans '):
@@ -101,7 +101,7 @@ async def on_message(message):
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
-        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, date.hour, date.minute, date.second))
+        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, (date.hour+9)%24, date.minute, date.second))
         print(message.content)
 
     if message.content.startswith('!waldomode') or message.content.startswith('!mode'):
@@ -125,7 +125,7 @@ async def on_message(message):
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
-        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, date.hour, date.minute, date.second))
+        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, (date.hour+9)%24, date.minute, date.second))
         print(message.content)
 
     if message.content.startswith('!자가진단'):
