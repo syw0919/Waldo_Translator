@@ -181,7 +181,7 @@ async def on_message(message):
                     alert.accept()
                     driver.close()
                     print('Alert창: ' + m)
-                    await channel.send(f'```\nAlert창\n{m}\n```')
+                    await channel.send(f'```\n[ Alert ]\n{m}\n```')
                     time.sleep(3)
                     ret = 1
 
