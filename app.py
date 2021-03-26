@@ -164,15 +164,15 @@ async def on_message(message):
                     driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[2]/input').click() # 학교선택 버튼 클릭
                     time.sleep(wait)
                     driver.find_element_by_id('user_name_input').send_keys('손영웅') # 이름 입력
-                    print('이름 입력')
-                    await channel.send('이름 입력')
+                    print('이름 입력: 손영웅')
+                    await channel.send('이름 입력: `손영웅`')
                     driver.find_element_by_id('birthday_input').send_keys('030919\n') # 생년월일 입력
-                    print('생년월일 입력')
-                    await channel.send('생년월일 입력')
+                    print('생년월일 입력: 030919')
+                    await channel.send('생년월일 입력: `030919`')
                     time.sleep(wait*4)
                     driver.find_element_by_xpath('//*[@id="WriteInfoForm"]/table/tbody/tr/td/input').send_keys('1234\n') # 암호 입력
-                    print('암호 입력')
-                    await channel.send('암호 입력')
+                    print('암호 입력: ****')
+                    await channel.send('암호 입력: `****`')
                     time.sleep(wait*6)
                     driver.find_element_by_class_name('name').click() # 손영웅 클릭
                     time.sleep(wait*4)
