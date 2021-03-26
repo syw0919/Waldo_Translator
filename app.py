@@ -146,7 +146,7 @@ async def on_message(message):
                 wait = .5
 
                 driver.get('https://hcs.eduro.go.kr/') # 사이트 접속
-                print('사이트 접속: `https://hcs.eduro.go.kr/`')
+                print('사이트 접속: https://hcs.eduro.go.kr/')
                 await channel.send('사이트 접속: `https://hcs.eduro.go.kr/`')
                 time.sleep(1)
                 driver.find_element_by_id('btnConfirm2').click() # 자가진단 참여하기 버튼 클릭
@@ -157,7 +157,7 @@ async def on_message(message):
                 driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[1]/table/tbody/tr[2]/td/select/option[5]').click() # 고등학교 선택
                 driver.find_element_by_class_name('searchArea').send_keys('대덕소프트웨어마이스터고등학교\n') # 대덕소프트웨어마이스터고등학교 검색
                 print('학교 검색: 대덕소프트웨어마이스터고등학교')
-                await channel.send('학교 검색: 대덕소프트웨어마이스터고등학교')
+                await channel.send('학교 검색: `대덕소프트웨어마이스터고등학교`')
                 time.sleep(wait)
                 driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[1]/ul/li/a/p/a').click() # 검색 결과 선택
                 driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[2]/input').click() # 학교선택 버튼 클릭
@@ -181,7 +181,7 @@ async def on_message(message):
                     alert.accept()
                     driver.close()
                     print('Alert창: ' + m)
-                    await channel.send('Alert창: ' + m)
+                    await channel.send(f'Alert창\n```\n{m}\n```')
                     time.sleep(3)
                     ret = 1
 
@@ -191,13 +191,13 @@ async def on_message(message):
 
                 driver.find_element_by_id('survey_q1a1').click() # 코로나 의심 증상 없음
                 print('코로나 의심 증상 여부: 아니오')
-                await channel.send('코로나 의심 증상 여부: 아니오')
+                await channel.send('코로나 의심 증상 여부: `아니오`')
                 driver.find_element_by_id('survey_q2a1').click() # 코로나 검사 결과를 기다리고 있지 않음
                 print('코로나 검사 결과 대기 여부: 아니오')
-                await channel.send('코로나 검사 결과 대기 여부: 아니오')
+                await channel.send('코로나 검사 결과 대기 여부: `아니오`')
                 driver.find_element_by_id('survey_q3a1').click() # 자가격리가 이루어지고 있지 않음
                 print('자가격리 실행 여부: 아니오')
-                await channel.send('자가격리 실행 여부: 아니오')
+                await channel.send('자가격리 실행 여부: `아니오`')
                 driver.find_element_by_id('btnConfirm').click() # 제출 버튼 클릭
                 print('제출')
                 await channel.send('제출')
@@ -207,7 +207,7 @@ async def on_message(message):
                 
             except Exception as ex:
                 print(f"[ Error ]{str(ex).rstrip()}\n\n")
-                await channel.send(f"[ Error ]{str(ex).rstrip()}\n\n")
+                await channel.send(f"[ Error ]\n```\n{str(ex).rstrip()}\n```")
                 ret = 1
 
             finally:
