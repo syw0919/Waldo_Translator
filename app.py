@@ -9,6 +9,8 @@ client = discord.Client()
 
 mode = 1
 
+admin = os.environ['admin']
+
 # 봇이 구동되었을 때 보여지는 코드
 @client.event
 async def on_ready():
@@ -129,7 +131,8 @@ async def on_message(message):
         print(message.content)
 
     if message.content.startswith('!자가진단'):
-        if message.author.startswith(os.environ['admin']):
+        author = str(message.author)
+        if author == admin:
             num = 1
             while num != 0:
                 print('자가진단 매크로가 시작되었습니다.')
@@ -216,7 +219,7 @@ async def on_message(message):
                     time.sleep(3)
                     num = ret
         else:
-            await channel.send(f'당신은 권한을 가지고 있지 않은!\nadmin: "{os.environ["admin"]}"\ncurrent user: "{message.author}"')
+            await channel.send(f'당신은 권한을 가지고 있지 않은!\nadmin: "{admin}"\ncurrent user: "{author}"')
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
