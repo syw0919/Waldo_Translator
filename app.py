@@ -219,11 +219,11 @@ async def on_message(message):
                     time.sleep(3)
                     num = ret
         else:
-            await channel.send(f'당신은 권한을 가지고 있지 않은!\nadmin: "{admin}"\ncurrent user: "{author}"')
+            await channel.send('당신은 권한을 가지고 있지 않은!')
 
         date = message.created_at
         print('[ {} ]'.format(message.author))
-        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, date.hour, date.minute, date.second))
+        print('[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]'.format(date.year, date.month, date.day, (date.hour+9)%24, date.minute, date.second))
         print(message.content)
 
 client.run(os.environ['token'])
