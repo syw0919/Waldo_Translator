@@ -146,8 +146,8 @@ async def on_message(message):
                 wait = .5
 
                 driver.get('https://hcs.eduro.go.kr/') # 사이트 접속
-                print('사이트 접속: https://hcs.eduro.go.kr/')
-                await channel.send('사이트 접속: https://hcs.eduro.go.kr/')
+                print('사이트 접속: `https://hcs.eduro.go.kr/`')
+                await channel.send('사이트 접속: `https://hcs.eduro.go.kr/`')
                 time.sleep(1)
                 driver.find_element_by_id('btnConfirm2').click() # 자가진단 참여하기 버튼 클릭
                 time.sleep(wait)
