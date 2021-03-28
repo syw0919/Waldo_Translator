@@ -140,7 +140,7 @@ async def on_message(message):
                 print('자가진단 매크로가 시작되었습니다.')
                 await channel.send('자가진단 매크로가 시작되었습니다.')
 
-                ret = 0
+                ret = 1
 
                 try:
                     options = webdriver.chrome.options.Options()
@@ -200,6 +200,7 @@ async def on_message(message):
                         print('Alert창: ' + m)
                         await channel.send(f'```\n[ Alert ]\n{m}\n```')
                         time.sleep(3)
+                        ret = 0
 
                     except Exception as ex:
                         print('[ Info ]\n로그인 완료')
@@ -223,11 +224,11 @@ async def on_message(message):
                     time.sleep(2) if options.headless else time.sleep(5)
                     print('[ Info ]\nTask failed successfully')
                     await channel.send('자가진단을 완료하였습니다.')
+                    ret = 0
 
                 except Exception as ex:
                     print(f"[ Error ]{str(ex).rstrip()}\n\n")
                     await channel.send(f"```\n[ Error ]\n{str(ex).rstrip()}\n```")
-                    ret = 1
 
                 finally:
                     try:
