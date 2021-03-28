@@ -242,11 +242,10 @@ async def on_message(message):
 
     if logappear:
         date = message.created_at
-        msgtext = '[ {} : {} ]\n[ {} : {} : {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n'.format(
+        msgtext = '[ {} : {} ]\n[ {} : {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n'.format(
             message.author.name,
             message.author.id,
-            message.channel.guild,
-            message.channel.name,
+            message.channel,
             message.channel.id,
             date.year,
             date.month,
