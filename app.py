@@ -9,7 +9,7 @@ client = discord.Client()
 
 mode = 1
 
-admin = discord.TextChannel(state='', guild='', data='')
+admin = {}
 
 # 봇이 구동되었을 때 보여지는 코드
 
