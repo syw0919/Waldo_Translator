@@ -220,7 +220,7 @@ async def on_message(message):
         else:
             await channel.send('Who the fuck are you?')
         
-        print(f'[ CHANNEL INFO ]\n{admin}')
+        print(f'[ CHANNEL INFO ]\n{channel}')
 
 
     if message.content.startswith('!자가진단'):
