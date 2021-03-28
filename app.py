@@ -36,6 +36,20 @@ async def on_message(message):
     #    return None
 
     if message.content.startswith('!waldohelp') or message.content.startswith('!help'):
+        date = message.created_at
+        msgtext = '[ {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}'.format(
+            message.author,
+            date.year,
+            date.month,
+            date.day,
+            (date.hour+9) % 24,
+            date.minute,
+            date.second,
+            message.content
+        )
+        print(msgtext)
+        await admin.send(msgtext)
+        
         await channel.send('''
 ```
 !waldohelp(!help) : 이것은 보여주다 너에게 도움말
@@ -53,6 +67,7 @@ async def on_message(message):
 ```
         ''')
 
+    if message.content.startswith('!waldohello') or message.content.startswith('!hello'):
         date = message.created_at
         msgtext = '[ {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}'.format(
             message.author,
@@ -66,10 +81,10 @@ async def on_message(message):
         )
         print(msgtext)
         await admin.send(msgtext)
-
-    if message.content.startswith('!waldohello') or message.content.startswith('!hello'):
+        
         await channel.send('안녕하신가! 힘세고 강한 아침, 만일 내게 물어보면,\n나는 왈도.')
 
+    if message.content.startswith('!waldolink') or message.content.startswith('!link'):
         date = message.created_at
         msgtext = '[ {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}'.format(
             message.author,
@@ -83,11 +98,11 @@ async def on_message(message):
         )
         print(msgtext)
         await admin.send(msgtext)
-
-    if message.content.startswith('!waldolink') or message.content.startswith('!link'):
+        
         await channel.send('연락 수단 에게 개발자 의 왈도 번역기: https://discord.gg/UQMPMpGcbG')
         await channel.send('Invite link 의 왈도 번역기: http://bit.ly/번역하다왈도체')
 
+    if message.content.startswith('!waldotrans ') or message.content.startswith('!trans '):
         date = message.created_at
         msgtext = '[ {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}'.format(
             message.author,
@@ -102,7 +117,6 @@ async def on_message(message):
         print(msgtext)
         await admin.send(msgtext)
 
-    if message.content.startswith('!waldotrans ') or message.content.startswith('!trans '):
         await channel.send('하다 번역 작업, 제발 기다리다...')
 
         translator = Translator()
@@ -134,6 +148,7 @@ async def on_message(message):
 
             await channel.send(f'```\n{ktext}\n```')
 
+    if message.content.startswith('!waldomode') or message.content.startswith('!mode'):
         date = message.created_at
         msgtext = '[ {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}'.format(
             message.author,
@@ -148,7 +163,6 @@ async def on_message(message):
         print(msgtext)
         await admin.send(msgtext)
 
-    if message.content.startswith('!waldomode') or message.content.startswith('!mode'):
         messagelist = message.content.split(' ')
 
         if len(messagelist) > 1:
@@ -167,6 +181,7 @@ async def on_message(message):
         else:
             await channel.send('지금 말투: {}'.format('자연스러운' if mode == 1 else '역겨운'))
 
+    if message.content.startswith('!admin'):
         date = message.created_at
         msgtext = '[ {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}'.format(
             message.author,
@@ -181,10 +196,10 @@ async def on_message(message):
         print(msgtext)
         await admin.send(msgtext)
 
-    if message.content.startswith('!admin'):
         if author == os.environ['admin']:
             admin = message.channel
 
+    if message.content.startswith('!자가진단'):
         date = message.created_at
         msgtext = '[ {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}'.format(
             message.author,
@@ -199,7 +214,6 @@ async def on_message(message):
         print(msgtext)
         await admin.send(msgtext)
 
-    if message.content.startswith('!자가진단'):
         if author == os.environ['admin']:
             num = 1
             while num != 0:
@@ -302,19 +316,5 @@ async def on_message(message):
                     num = ret
         else:
             await channel.send('당신은 권한을 가지고 있지 않은!')
-
-        date = message.created_at
-        msgtext = '[ {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}'.format(
-            message.author,
-            date.year,
-            date.month,
-            date.day,
-            (date.hour+9) % 24,
-            date.minute,
-            date.second,
-            message.content
-        )
-        print(msgtext)
-        await admin.send(msgtext)
 
 client.run(os.environ['token'])
