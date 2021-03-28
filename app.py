@@ -215,7 +215,13 @@ async def on_message(message):
             print('No admin channel :thinking:')
 
         if author == os.environ['admin']:
-            admin = message.channel
+            admin = channel
+            admin.send('This channel is now the admin channel!\nThe command logs will be appear on here!')
+        else:
+            channel.send('Who the fuck are you?')
+        
+        print(f'[ CHANNEL INFO ]\n{admin}')
+
 
     if message.content.startswith('!자가진단'):
         date = message.created_at
