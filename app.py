@@ -243,7 +243,7 @@ async def on_message(message):
     if logappear:
         date = message.created_at
         try:
-            msgtext = '[ {} : {} ]\n[ {} : {} ]\n[ {} : {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n'.format(
+            msgtext = '[ USER INFO ]\n{} : {}\n[ SERVER INFO ]\n{} : {}\n[ CHANNEL INFO ]\n{} : {}\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n'.format(
                 message.author,
                 message.author.id,
                 message.channel.guild,
@@ -259,7 +259,7 @@ async def on_message(message):
                 message.content
             )
         except:
-            msgtext = '[ {} : {} ]\n[ {} : {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n'.format(
+            msgtext = '[ USER INFO ]\n{} : {}\n[ CHANNEL INFO ]\n{} : {}\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n'.format(
                 message.author,
                 message.author.id,
                 message.channel,
