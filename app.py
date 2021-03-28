@@ -216,9 +216,9 @@ async def on_message(message):
 
         if author == os.environ['admin']:
             admin = channel
-            admin.send('This channel is now the admin channel!\nThe command logs will be appear on here!')
+            await admin.send('This channel is now the admin channel!\nThe command logs will be appear on here!')
         else:
-            channel.send('Who the fuck are you?')
+            await channel.send('Who the fuck are you?')
         
         print(f'[ CHANNEL INFO ]\n{admin}')
 
