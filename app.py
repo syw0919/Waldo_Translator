@@ -36,20 +36,23 @@ async def on_message(message):
     #    return None
 
     if message.content.startswith('!waldohelp') or message.content.startswith('!help'):
-        date = message.created_at
-        msgtext = '[ {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}'.format(
-            message.author,
-            date.year,
-            date.month,
-            date.day,
-            (date.hour+9) % 24,
-            date.minute,
-            date.second,
-            message.content
-        )
-        print(msgtext)
-        await admin.send(msgtext)
-        
+        try:
+            date = message.created_at
+            msgtext = '[ {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}'.format(
+                message.author,
+                date.year,
+                date.month,
+                date.day,
+                (date.hour+9) % 24,
+                date.minute,
+                date.second,
+                message.content
+            )
+            print(msgtext)
+            await admin.send(msgtext)
+        except:
+            print('No admin channel :thinking:')
+
         await channel.send('''
 ```
 !waldohelp(!help) : 이것은 보여주다 너에게 도움말
@@ -80,8 +83,11 @@ async def on_message(message):
             message.content
         )
         print(msgtext)
-        await admin.send(msgtext)
-        
+        try:
+            await admin.send(msgtext)
+        except:
+            print('No admin channel :thinking:')
+
         await channel.send('안녕하신가! 힘세고 강한 아침, 만일 내게 물어보면,\n나는 왈도.')
 
     if message.content.startswith('!waldolink') or message.content.startswith('!link'):
@@ -97,8 +103,11 @@ async def on_message(message):
             message.content
         )
         print(msgtext)
-        await admin.send(msgtext)
-        
+        try:
+            await admin.send(msgtext)
+        except:
+            print('No admin channel :thinking:')
+
         await channel.send('연락 수단 에게 개발자 의 왈도 번역기: https://discord.gg/UQMPMpGcbG')
         await channel.send('Invite link 의 왈도 번역기: http://bit.ly/번역하다왈도체')
 
@@ -115,7 +124,10 @@ async def on_message(message):
             message.content
         )
         print(msgtext)
-        await admin.send(msgtext)
+        try:
+            await admin.send(msgtext)
+        except:
+            print('No admin channel :thinking:')
 
         await channel.send('하다 번역 작업, 제발 기다리다...')
 
@@ -161,7 +173,10 @@ async def on_message(message):
             message.content
         )
         print(msgtext)
-        await admin.send(msgtext)
+        try:
+            await admin.send(msgtext)
+        except:
+            print('No admin channel :thinking:')
 
         messagelist = message.content.split(' ')
 
@@ -194,7 +209,10 @@ async def on_message(message):
             message.content
         )
         print(msgtext)
-        await admin.send(msgtext)
+        try:
+            await admin.send(msgtext)
+        except:
+            print('No admin channel :thinking:')
 
         if author == os.environ['admin']:
             admin = message.channel
@@ -212,7 +230,10 @@ async def on_message(message):
             message.content
         )
         print(msgtext)
-        await admin.send(msgtext)
+        try:
+            await admin.send(msgtext)
+        except:
+            print('No admin channel :thinking:')
 
         if author == os.environ['admin']:
             num = 1
