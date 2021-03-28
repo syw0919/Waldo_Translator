@@ -130,9 +130,6 @@ async def on_message(message):
             await admin.send('This channel is now the admin channel!\nThe command logs will be appear on here!')
         else:
             await channel.send('Who the fuck are you?')
-        
-        print(f'[ CHANNEL INFO ]\n{channel}')
-
 
     if message.content.startswith('!자가진단'):
         logappear = True
@@ -242,7 +239,7 @@ async def on_message(message):
                     num = ret
         else:
             await channel.send('당신은 권한을 가지고 있지 않은!')
-    
+
     if logappear:
         date = message.created_at
         msgtext = '[ {} : {} ]\n[ {} : {} : {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n'.format(
