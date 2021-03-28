@@ -242,19 +242,35 @@ async def on_message(message):
 
     if logappear:
         date = message.created_at
-        msgtext = '[ {} : {} ]\n[ {} : {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n'.format(
-            message.author,
-            message.author.id,
-            message.channel,
-            message.channel.id,
-            date.year,
-            date.month,
-            date.day,
-            (date.hour+9) % 24,
-            date.minute,
-            date.second,
-            message.content
-        )
+        try:
+            msgtext = '[ {} : {} ]\n[ {} : {} : {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n'.format(
+                message.author,
+                message.author.id,
+                message.channel.guild,
+                message.channel,
+                message.channel.id,
+                date.year,
+                date.month,
+                date.day,
+                (date.hour+9) % 24,
+                date.minute,
+                date.second,
+                message.content
+            )
+        except:
+            msgtext = '[ {} : {} ]\n[ {} : {} ]\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n'.format(
+                message.author,
+                message.author.id,
+                message.channel,
+                message.channel.id,
+                date.year,
+                date.month,
+                date.day,
+                (date.hour+9) % 24,
+                date.minute,
+                date.second,
+                message.content
+            )
         print(msgtext)
         try:
             await admin.send(msgtext)
