@@ -200,7 +200,6 @@ async def on_message(message):
                         print('Alert창: ' + m)
                         await channel.send(f'```\n[ Alert ]\n{m}\n```')
                         time.sleep(3)
-                        ret = 1
 
                     except Exception as ex:
                         print('[ Info ]\n로그인 완료')
