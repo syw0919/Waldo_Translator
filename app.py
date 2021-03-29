@@ -9,11 +9,10 @@ client = discord.Client()
 
 mode = 1
 
-admin = {}
+admin = client.get_channel(825598183802404885)
+
 
 # 봇이 구동되었을 때 보여지는 코드
-
-
 @client.event
 async def on_ready():
     print("다음으로 로그인합니다")
@@ -21,9 +20,8 @@ async def on_ready():
     print(client.user.id)
     print("================")
 
+
 # 봇이 특정 메세지를 받고 인식하는 코드
-
-
 @client.event
 async def on_message(message):
     global mode
