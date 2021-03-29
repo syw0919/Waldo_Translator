@@ -9,7 +9,7 @@ client = discord.Client()
 
 mode = 1
 
-admin = client.get_channel(825598183802404885)
+admin = client.fetch_channel(825598183802404885)
 
 
 # 봇이 구동되었을 때 보여지는 코드
@@ -273,7 +273,8 @@ async def on_message(message):
         print(msgtext)
         try:
             await admin.send(msgtext)
-        except:
+        except Exception as ex:
             print('No admin channel :thinking:')
+            print(str(ex))
 
 client.run(os.environ['token'])
