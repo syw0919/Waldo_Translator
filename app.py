@@ -94,6 +94,10 @@ async def on_message(message):
 
             await channel.send(f'```\n{ktext}\n```')
 
+            if text == ktext:
+                await channel.send('Error has been occured!\nSystem restarting(It may take a minute)...')
+                os.system('python restart.py')
+
         if mode == 2:
             textlist = text.split(' ')[1:]
             text = ' '.join(textlist)
@@ -107,6 +111,10 @@ async def on_message(message):
             ktext = ' '.join(ktextlist).replace('...', '').replace('ㅏ', '하나의')
 
             await channel.send(f'```\n{ktext}\n```')
+
+            if text == ktext:
+                await channel.send('Error has been occured!\nSystem restarting(It may take a minute)...')
+                os.system('python restart.py')
 
     if message.content.startswith('!waldomode') or message.content.startswith('!mode'):
         logappear = True
@@ -142,7 +150,7 @@ async def on_message(message):
         logappear = True
 
         if author == os.environ['admin']:
-            await channel.send('System restarting...')
+            await channel.send('System restarting(It may take a minute)...')
             os.system('python restart.py')
         else:
             await channel.send('Who the fuck are you?')
