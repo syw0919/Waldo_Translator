@@ -25,6 +25,8 @@ async def on_ready():
 
     admin = client.get_channel(825598183802404885)
 
+    await admin.send(f"다음으로 로그인합니다\n{client.user.name}\n{client.user.id}\n================")
+
 
 # 봇이 특정 메세지를 받고 인식하는 코드
 @client.event
