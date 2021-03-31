@@ -4,6 +4,7 @@ import time
 import asyncio
 import discord
 import os
+import re
 
 client = discord.Client()
 
@@ -72,8 +73,10 @@ async def on_message(message):
 
         translator = Translator()
 
+        text = re.sub(' +', ' ', message.content)
+
         if mode == 1:
-            textlist = message.content.split(' ')[1:]
+            textlist = text.split(' ')[1:]   
             text = ' '.join(textlist)
 
             etextlist = []
@@ -86,7 +89,7 @@ async def on_message(message):
             await channel.send(f'```\n{ktext}\n```')
 
         if mode == 2:
-            textlist = message.content.split(' ')[1:]
+            textlist = text.split(' ')[1:]
             text = ' '.join(textlist)
 
             etext = translator.translate(text, src='ko', dest='en').text
