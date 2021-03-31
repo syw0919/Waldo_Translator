@@ -136,6 +136,16 @@ async def on_message(message):
         else:
             await channel.send('Who the fuck are you?')
 
+    if message.content.startswith('!restart'):
+        logappear = True
+
+        if author == os.environ['admin']:
+            await channel.send('System restarting...')
+            print('System restarting...')
+            exit(0)
+        else:
+            await channel.send('Who the fuck are you?')
+
     if message.content.startswith('!자가진단'):
         logappear = True
 
