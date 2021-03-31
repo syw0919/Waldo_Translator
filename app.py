@@ -12,6 +12,47 @@ mode = 1
 
 admin = {}
 
+async def log(message):
+    global admin
+
+    date = message.created_at
+    try:
+        msgtext = '[ USER INFO ]\n{} : {}\n[ SERVER INFO ]\n{} : {}\n[ CHANNEL INFO ]\n{} : {}\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n================'.format(
+            message.author,
+            message.author.id,
+            message.channel.guild,
+            message.channel.guild.id,
+            message.channel,
+            message.channel.id,
+            date.year,
+            date.month,
+            date.day,
+            (date.hour+9) % 24,
+            date.minute,
+            date.second,
+            message.content
+        )
+    except:
+        msgtext = '[ USER INFO ]\n{} : {}\n[ CHANNEL INFO ]\n{} : {}\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n================'.format(
+            message.author,
+            message.author.id,
+            message.channel,
+            message.channel.id,
+            date.year,
+            date.month,
+            date.day,
+            (date.hour+9) % 24,
+            date.minute,
+            date.second,
+            message.content
+        )
+    print(msgtext)
+    try:
+        await admin.send(msgtext)
+    except Exception as ex:
+        print('No admin channel :thinking:')
+        print(str(ex))
+
 
 # 봇이 구동되었을 때 보여지는 코드
 @client.event
@@ -35,14 +76,13 @@ async def on_message(message):
     global admin
     channel = message.channel
     author = str(message.author)
-    logappear = False
 
     # 메세지를 보낸 사람이 봇일 경우 무시한다
     # if message.author.bot:
     #    return None
 
     if message.content.startswith('!waldohelp') or message.content.startswith('!help'):
-        logappear = True
+        await log(message)
 
         await channel.send('''
 ```
@@ -62,18 +102,18 @@ async def on_message(message):
         ''')
 
     if message.content.startswith('!waldohello') or message.content.startswith('!hello'):
-        logappear = True
+        await log(message)
 
         await channel.send('안녕하신가! 힘세고 강한 아침, 만일 내게 물어보면,\n나는 왈도.')
 
     if message.content.startswith('!waldolink') or message.content.startswith('!link'):
-        logappear = True
+        await log(message)
 
         await channel.send('연락 수단 에게 개발자 의 왈도 번역기: https://discord.gg/UQMPMpGcbG')
         await channel.send('Invite link 의 왈도 번역기: http://bit.ly/번역하다왈도체')
 
     if message.content.startswith('!waldotrans ') or message.content.startswith('!trans '):
-        logappear = True
+        await log(message)
 
         await channel.send('하다 번역 작업, 제발 기다리다...')
 
@@ -117,7 +157,7 @@ async def on_message(message):
                 os.system('python restart.py')
 
     if message.content.startswith('!waldomode') or message.content.startswith('!mode'):
-        logappear = True
+        await log(message)
 
         messagelist = message.content.split(' ')
 
@@ -138,7 +178,7 @@ async def on_message(message):
             await channel.send('지금 말투: {}'.format('자연스러운' if mode == 1 else '역겨운'))
 
     if message.content.startswith('!admin'):
-        logappear = True
+        await log(message)
 
         if author == os.environ['admin']:
             admin = channel
@@ -147,7 +187,7 @@ async def on_message(message):
             await channel.send('Who the fuck are you?')
 
     if message.content.startswith('!restart'):
-        logappear = True
+        await log(message)
 
         if author == os.environ['admin']:
             await channel.send('System restarting(It may take a minute)...')
@@ -156,7 +196,7 @@ async def on_message(message):
             await channel.send('Who the fuck are you?')
 
     if message.content.startswith('!자가진단'):
-        logappear = True
+        await log(message)
 
         if author == os.environ['admin']:
             num = 1
@@ -263,44 +303,5 @@ async def on_message(message):
                     num = ret
         else:
             await channel.send('당신은 권한을 가지고 있지 않은!')
-
-    if logappear:
-        date = message.created_at
-        try:
-            msgtext = '[ USER INFO ]\n{} : {}\n[ SERVER INFO ]\n{} : {}\n[ CHANNEL INFO ]\n{} : {}\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n================'.format(
-                message.author,
-                message.author.id,
-                message.channel.guild,
-                message.channel.guild.id,
-                message.channel,
-                message.channel.id,
-                date.year,
-                date.month,
-                date.day,
-                (date.hour+9) % 24,
-                date.minute,
-                date.second,
-                message.content
-            )
-        except:
-            msgtext = '[ USER INFO ]\n{} : {}\n[ CHANNEL INFO ]\n{} : {}\n[ {:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d} ]\n{}\n================'.format(
-                message.author,
-                message.author.id,
-                message.channel,
-                message.channel.id,
-                date.year,
-                date.month,
-                date.day,
-                (date.hour+9) % 24,
-                date.minute,
-                date.second,
-                message.content
-            )
-        print(msgtext)
-        try:
-            await admin.send(msgtext)
-        except Exception as ex:
-            print('No admin channel :thinking:')
-            print(str(ex))
 
 client.run(os.environ['token'])
