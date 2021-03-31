@@ -12,7 +12,7 @@ while num != 0:
         options.add_argument('--headless')
         options.add_argument("--disable-gpu")
         options.add_argument('--start-maximized')
-        driver = webdriver.Chrome('chromedriver.exe', options=options)
+        driver = webdriver.Chrome('/app/.chromedriver/bin/chromedriver', options=options)
 
         driver.get('https://id.heroku.com/login')
         time.sleep(1)
