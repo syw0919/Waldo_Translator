@@ -23,7 +23,7 @@ async def on_ready():
     print(client.user.id)
     print("================")
 
-    admin = client.get_channel(825598183802404885)
+    admin = client.get_channel(int(os.environ['adminchannel']))
 
     await admin.send(f"다음으로 로그인합니다\n{client.user.name}\n{client.user.id}\n================")
 
