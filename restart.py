@@ -9,7 +9,8 @@ while num != 0:
 
     try:
         options = webdriver.chrome.options.Options()
-        # options.add_argument('--headless')
+        options.add_argument('--headless')
+        options.add_argument("--disable-gpu")
         options.add_argument('--start-maximized')
         driver = webdriver.Chrome('chromedriver.exe', options=options)
 
