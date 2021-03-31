@@ -94,7 +94,7 @@ async def on_message(message):
 
             await channel.send(f'```\n{ktext}\n```')
 
-            if text == ktext:
+            if len(text) > 15 and text == ktext:
                 await channel.send('Error has been occured!\nSystem restarting(It may take a minute)...')
                 os.system('python restart.py')
 
@@ -112,7 +112,7 @@ async def on_message(message):
 
             await channel.send(f'```\n{ktext}\n```')
 
-            if text == ktext:
+            if len(text) > 15 and text == ktext:
                 await channel.send('Error has been occured!\nSystem restarting(It may take a minute)...')
                 os.system('python restart.py')
 
