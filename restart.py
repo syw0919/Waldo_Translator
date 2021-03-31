@@ -20,7 +20,7 @@ while num != 0:
         time.sleep(1)
         driver.find_element_by_id('email').send_keys(os.environ['herokuemail'])
         driver.find_element_by_id('password').send_keys(os.environ['herokupass'])
-        time.sleep(10)
+        time.sleep(15)
         driver.find_element_by_xpath('/html/body/div[5]/main/div[2]/div[2]/div[3]/div[1]/a/div/span').click()
         time.sleep(5)
         driver.find_element_by_xpath('/html/body/div[5]/main/div[2]/div[1]/div[1]/div[2]/div/div[1]/button').click()
