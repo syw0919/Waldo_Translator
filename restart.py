@@ -5,6 +5,8 @@ import os
 num = 1
 
 while num != 0:
+    print('System restarting...')
+    
     ret = 0
 
     try:

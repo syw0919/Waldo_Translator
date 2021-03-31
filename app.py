@@ -143,7 +143,6 @@ async def on_message(message):
 
         if author == os.environ['admin']:
             await channel.send('System restarting...')
-            print('System restarting...')
             os.system('python restart.py')
         else:
             await channel.send('Who the fuck are you?')
