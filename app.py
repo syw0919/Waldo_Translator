@@ -9,7 +9,7 @@ client = discord.Client()
 
 mode = 1
 
-admin = client.fetch_channel(825598183802404885)
+admin = client.get_channel(825598183802404885)
 
 
 # 봇이 구동되었을 때 보여지는 코드
