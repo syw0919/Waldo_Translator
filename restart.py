@@ -36,13 +36,11 @@ while num != 0:
         time.sleep(10)
 
     except Exception as ex:
-        print(f'[ Error ]{str(ex).strip()}\n\n')
+        print(f'[ Error ]\n{str(ex).strip()}\n\n')
         ret = 1
 
     finally:
-        try:
-            driver.close()
-        except Exception as ex:
-            print(ex)
         time.sleep(3)
         num = ret
+
+driver.close()
