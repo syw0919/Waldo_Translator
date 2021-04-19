@@ -136,6 +136,7 @@ async def on_message(message):
 
             if len(text) > 15 and text == ktext:
                 await channel.send('Error has been occured!\nSystem restarting(It may take a minute)...')
+                await admin.send('Error has been occured!\nSystem restarting(It may take a minute)...')
                 os.system('python restart.py')
 
         if mode == 2:
@@ -154,6 +155,7 @@ async def on_message(message):
 
             if len(text) > 15 and text == ktext:
                 await channel.send('Error has been occured!\nSystem restarting(It may take a minute)...')
+                await admin.send('Error has been occured!\nSystem restarting(It may take a minute)...')
                 os.system('python restart.py')
 
     if message.content.startswith('!waldomode') or message.content.startswith('!mode'):

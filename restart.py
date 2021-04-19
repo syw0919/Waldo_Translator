@@ -21,7 +21,7 @@ while num != 0:
         driver.find_element_by_id('password').send_keys(os.environ['herokupass'])
         driver.find_element_by_name('commit').click()
         print('login succeed')
-        time.sleep(10)
+        time.sleep(20)
         driver.find_element_by_xpath('/html/body/div[5]/main/div[2]/div[2]/div[3]/div[1]/a/div/span').click()
         print('select "waldo-translator"')
         time.sleep(5)
@@ -35,7 +35,7 @@ while num != 0:
         time.sleep(10)
 
     except Exception as ex:
-        print(f"[ Error ]{str(ex).rstrip()}\n\n")
+        print(f'[ Error ]{str(ex).strip()}\n\n')
         ret = 1
 
     finally:
