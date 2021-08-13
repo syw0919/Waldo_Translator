@@ -97,9 +97,10 @@ async def selfdiagnosis(channel):
             driver.find_element_by_id('birthday_input').send_keys(f'{birth}\n')  # 생년월일 입력
             print(f'생년월일 입력: {birth}')
             await channel.send(f'생년월일 입력: `{birth}`')
-            time.sleep(wait*4)
+            time.sleep(wait*8)
             ##### 암호 입력
             driver.find_element_by_xpath('//*[@id="WriteInfoForm"]/table/tbody/tr/td/input').click()
+            time.sleep(wait*8)
             for i in password:
                 driver.find_element_by_xpath(f'//a[@aria-label="{i}"]').click()
             time.sleep(3)
