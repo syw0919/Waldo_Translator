@@ -181,7 +181,7 @@ async def selfdiagnosis(channel):
 
         except:
             print(f"[ Error ]", *sys.exc_info(), "\n", sep="\n")
-            await channel.send(f"```\n[ Error ]\n{'\n'.join(sys.exc_info())}\n```")
+            await channel.send(f"```\n[ Error ]\n{'\\n'.join(sys.exc_info())}\n```")
 
         finally:
             try:
