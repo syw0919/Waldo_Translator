@@ -53,6 +53,105 @@ async def log(message):
         print('No admin channel :thinking:')
         print(str(ex))
 
+async def selfdiagnosis(channel):
+    school = os.environ["school"]
+    name = os.environ["name"]
+    birth = os.environ["birth"]
+    password = os.environ["pass"]
+    num = 1
+    while num != 0:
+        print('자가진단 매크로가 시작되었습니다.')
+        await channel.send('자가진단 매크로가 시작되었습니다.')
+
+        ret = 1
+
+        try:
+            options = webdriver.chrome.options.Options()
+            options.add_argument('--headless')
+            options.add_argument("--disable-gpu")
+            options.add_argument("--start-maximized")
+            driver = webdriver.Chrome('/app/.chromedriver/bin/chromedriver', options=options)
+
+            wait = .5
+
+            driver.get('https://hcs.eduro.go.kr/')  # 사이트 접속
+            print('사이트 접속: https://hcs.eduro.go.kr/')
+            await channel.send('사이트 접속: `https://hcs.eduro.go.kr/`')
+            time.sleep(1)
+            driver.find_element_by_id('btnConfirm2').click()  # 자가진단 참여하기 버튼 클릭
+            time.sleep(wait)
+            driver.find_element_by_class_name('searchBtn').click()  # 학교 검색
+            time.sleep(wait)
+            driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[1]/table/tbody/tr[1]/td/select/option[7]').click()  # 대전광역시 선택
+            driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[1]/table/tbody/tr[2]/td/select/option[5]').click()  # 고등학교 선택
+            driver.find_element_by_class_name('searchArea').send_keys(f'{school}\n')  # 학교 검색
+            print(f'학교 검색: {school}')
+            await channel.send(f'학교 검색: `{school}`')
+            time.sleep(wait)
+            driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[1]/ul/li/a/p/a').click()  # 검색 결과 선택
+            driver.find_element_by_xpath('//*[@id="softBoardListLayer"]/div[2]/div[2]/input').click()  # 학교선택 버튼 클릭
+            time.sleep(wait)
+            driver.find_element_by_id('user_name_input').send_keys(f'{name}')  # 이름 입력
+            print(f'이름 입력: {name}')
+            await channel.send(f'이름 입력: `{name}`')
+            driver.find_element_by_id('birthday_input').send_keys(f'{birth}\n')  # 생년월일 입력
+            print(f'생년월일 입력: {birth}')
+            await channel.send(f'생년월일 입력: `{birth}`')
+            time.sleep(wait*4)
+            ##### 암호 입력
+            driver.find_element_by_xpath('//*[@id="WriteInfoForm"]/table/tbody/tr/td/input').click()
+            for i in password:
+                driver.find_element_by_xpath(f'//a[@aria-label="{i}"]').click()
+            time.sleep(3)
+            print('암호 입력: ****')
+            await channel.send('암호 입력: `****`')
+            driver.find_element_by_id('btnConfirm').click()
+            time.sleep(wait*6)
+            driver.find_element_by_class_name('name').click()  # 손영웅 클릭
+            time.sleep(wait*4)
+            try:
+                alert = driver.switch_to.alert
+                m = alert.text
+                alert.accept()
+                driver.close()
+                print('Alert창: ' + m)
+                await channel.send(f'```\n[ Alert ]\n{m}\n```')
+                time.sleep(3)
+                ret = 0
+
+            except Exception as ex:
+                print('[ Info ]\n로그인 완료')
+                await channel.send('로그인 완료')
+
+            driver.find_element_by_id('survey_q1a1').click()  # 코로나 의심 증상 없음
+            print('코로나 의심 증상 여부: 아니오')
+            await channel.send('코로나 의심 증상 여부: `아니오`')
+            # 코로나 검사 결과를 기다리고 있지 않음
+            driver.find_element_by_id('survey_q2a1').click()
+            print('코로나 검사 결과 대기 여부: 아니오')
+            await channel.send('코로나 검사 결과 대기 여부: `아니오`')
+            driver.find_element_by_id('survey_q3a1').click()  # 자가격리가 이루어지고 있지 않음
+            print('자가격리 실행 여부: 아니오')
+            await channel.send('자가격리 실행 여부: `아니오`')
+            driver.find_element_by_id('btnConfirm').click()  # 제출 버튼 클릭
+            print('제출')
+            await channel.send('제출')
+            time.sleep(2) if options.headless else time.sleep(5)
+            print('[ Info ]\nTask failed successfully')
+            await channel.send('자가진단을 완료하였습니다.')
+            ret = 0
+
+        except Exception as ex:
+            print(f"[ Error ]{str(ex).rstrip()}\n\n")
+            await channel.send(f"```\n[ Error ]\n{str(ex).rstrip()}\n```")
+
+        finally:
+            try:
+                driver.close()
+            except:
+                print('There is no driver to close')
+            time.sleep(3)
+            num = ret
 
 # 봇이 구동되었을 때 보여지는 코드
 @client.event
@@ -201,108 +300,7 @@ async def on_message(message):
         await log(message)
 
         if author == os.environ['admin']:
-            num = 1
-            while num != 0:
-                print('자가진단 매크로가 시작되었습니다.')
-                await channel.send('자가진단 매크로가 시작되었습니다.')
-
-                ret = 1
-
-                try:
-                    options = webdriver.chrome.options.Options()
-                    options.add_argument('--headless')
-                    options.add_argument("--disable-gpu")
-                    options.add_argument("--start-maximized")
-                    driver = webdriver.Chrome(
-                        '/app/.chromedriver/bin/chromedriver', options=options)
-
-                    wait = .5
-
-                    driver.get('https://hcs.eduro.go.kr/')  # 사이트 접속
-                    print('사이트 접속: https://hcs.eduro.go.kr/')
-                    await channel.send('사이트 접속: `https://hcs.eduro.go.kr/`')
-                    time.sleep(1)
-                    driver.find_element_by_id(
-                        'btnConfirm2').click()  # 자가진단 참여하기 버튼 클릭
-                    time.sleep(wait)
-                    driver.find_element_by_class_name(
-                        'searchBtn').click()  # 학교 검색
-                    time.sleep(wait)
-                    driver.find_element_by_xpath(
-                        '//*[@id="softBoardListLayer"]/div[2]/div[1]/table/tbody/tr[1]/td/select/option[7]').click()  # 대전광역시 선택
-                    driver.find_element_by_xpath(
-                        '//*[@id="softBoardListLayer"]/div[2]/div[1]/table/tbody/tr[2]/td/select/option[5]').click()  # 고등학교 선택
-                    driver.find_element_by_class_name('searchArea').send_keys(
-                        f'{os.environ["school"]}\n')  # 학교 검색
-                    print(f'학교 검색: {os.environ["school"]}')
-                    await channel.send(f'학교 검색: `{os.environ["school"]}`')
-                    time.sleep(wait)
-                    driver.find_element_by_xpath(
-                        '//*[@id="softBoardListLayer"]/div[2]/div[1]/ul/li/a/p/a').click()  # 검색 결과 선택
-                    driver.find_element_by_xpath(
-                        '//*[@id="softBoardListLayer"]/div[2]/div[2]/input').click()  # 학교선택 버튼 클릭
-                    time.sleep(wait)
-                    driver.find_element_by_id('user_name_input').send_keys(
-                        f'{os.environ["name"]}')  # 이름 입력
-                    print(f'이름 입력: {os.environ["name"]}')
-                    await channel.send(f'이름 입력: `{os.environ["name"]}`')
-                    driver.find_element_by_id('birthday_input').send_keys(
-                        f'{os.environ["birth"]}\n')  # 생년월일 입력
-                    print(f'생년월일 입력: {os.environ["birth"]}')
-                    await channel.send(f'생년월일 입력: `{os.environ["birth"]}`')
-                    time.sleep(wait*4)
-                    driver.find_element_by_xpath(
-                        '//*[@id="WriteInfoForm"]/table/tbody/tr/td/input').send_keys(f'{os.environ["pass"]}\n')  # 암호 입력
-                    print('암호 입력: ****')
-                    await channel.send('암호 입력: `****`')
-                    time.sleep(wait*6)
-                    driver.find_element_by_class_name('name').click()  # 손영웅 클릭
-                    time.sleep(wait*4)
-                    try:
-                        alert = driver.switch_to.alert
-                        m = alert.text
-                        alert.accept()
-                        driver.close()
-                        print('Alert창: ' + m)
-                        await channel.send(f'```\n[ Alert ]\n{m}\n```')
-                        time.sleep(3)
-                        ret = 0
-
-                    except Exception as ex:
-                        print('[ Info ]\n로그인 완료')
-                        await channel.send('로그인 완료')
-
-                    driver.find_element_by_id(
-                        'survey_q1a1').click()  # 코로나 의심 증상 없음
-                    print('코로나 의심 증상 여부: 아니오')
-                    await channel.send('코로나 의심 증상 여부: `아니오`')
-                    # 코로나 검사 결과를 기다리고 있지 않음
-                    driver.find_element_by_id('survey_q2a1').click()
-                    print('코로나 검사 결과 대기 여부: 아니오')
-                    await channel.send('코로나 검사 결과 대기 여부: `아니오`')
-                    driver.find_element_by_id(
-                        'survey_q3a1').click()  # 자가격리가 이루어지고 있지 않음
-                    print('자가격리 실행 여부: 아니오')
-                    await channel.send('자가격리 실행 여부: `아니오`')
-                    driver.find_element_by_id('btnConfirm').click()  # 제출 버튼 클릭
-                    print('제출')
-                    await channel.send('제출')
-                    time.sleep(2) if options.headless else time.sleep(5)
-                    print('[ Info ]\nTask failed successfully')
-                    await channel.send('자가진단을 완료하였습니다.')
-                    ret = 0
-
-                except Exception as ex:
-                    print(f"[ Error ]{str(ex).rstrip()}\n\n")
-                    await channel.send(f"```\n[ Error ]\n{str(ex).rstrip()}\n```")
-
-                finally:
-                    try:
-                        driver.close()
-                    except:
-                        print('There is no driver to close')
-                    time.sleep(3)
-                    num = ret
+            await selfdiagnosis(channel)
         else:
             await channel.send('당신은 권한을 가지고 있지 않은!')
 
