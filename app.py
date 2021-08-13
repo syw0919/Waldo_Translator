@@ -1,5 +1,8 @@
 from googletrans import Translator
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 import time
 import asyncio
 import discord
@@ -120,10 +123,8 @@ async def selfdiagnosis(channel):
             ##### 암호 입력
             driver.find_element_by_xpath('//input[@id="password"]').click()
             
-            time.sleep(wait*8)
-            
             for i in password:
-                driver.find_element_by_xpath(f'//a[@aria-label="{i}"]').click()
+                WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, f'//a[@aria-label="{i}"]'))).click()
                 
             time.sleep(3)
             
@@ -178,9 +179,9 @@ async def selfdiagnosis(channel):
             await channel.send('자가진단을 완료하였습니다.')
             ret = 0
 
-        except Exception as ex:
+        except Exception:
             print(f"[ Error ]", *sys.exc_info(), "\n", sep="\n")
-            await channel.send(f"```\n[ Error ]\n{str(ex).rstrip()}\n```")
+            await channel.send(f"```\n[ Error ]\n{str(Exception).rstrip()}\n```")
 
         finally:
             try:
