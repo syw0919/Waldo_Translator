@@ -3,6 +3,7 @@ from selenium import webdriver
 import time
 import asyncio
 import discord
+import sys
 import os
 import re
 
@@ -142,8 +143,8 @@ async def selfdiagnosis(channel):
             await channel.send('자가진단을 완료하였습니다.')
             ret = 0
 
-        except Exception as ex:
-            print(f"[ Error ]{str(ex).rstrip()}\n\n")
+        except:
+            print(f"[ Error ]", *sys.exc_info(), "\n", sep="\n")
             await channel.send(f"```\n[ Error ]\n{str(ex).rstrip()}\n```")
 
         finally:
