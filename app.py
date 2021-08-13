@@ -124,7 +124,7 @@ async def selfdiagnosis(channel):
             driver.find_element_by_xpath('//input[@id="password"]').click()
             
             for i in password:
-                WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, f'//a[@aria-label="{i}"]'))).click()
+                WebDriverWait(driver, 100).until(EC.element_to_be_clickable((By.XPATH, f'//a[@aria-label="{i}"]'))).click()
                 
             time.sleep(3)
             
@@ -179,9 +179,9 @@ async def selfdiagnosis(channel):
             await channel.send('자가진단을 완료하였습니다.')
             ret = 0
 
-        except Exception:
+        except:
             print(f"[ Error ]", *sys.exc_info(), "\n", sep="\n")
-            await channel.send(f"```\n[ Error ]\n{str(Exception).rstrip()}\n```")
+            await channel.send(f"```\n[ Error ]\n{'\n'.join(sys.exc_info())}\n```")
 
         finally:
             try:
