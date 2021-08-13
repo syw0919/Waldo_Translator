@@ -22,7 +22,7 @@ while num != 0:
         driver.find_element_by_id('password').send_keys(os.environ['herokupass'])
         driver.find_element_by_name('commit').click()
         print('login succeed')
-        time.sleep(10)
+        time.sleep(30)
         print('select "waldo-translator"')
         driver.find_element_by_xpath('/html/body/div[5]/main/div[2]/div[2]/div[3]/div[1]/a/div/span').click()
         time.sleep(5)
