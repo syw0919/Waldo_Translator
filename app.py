@@ -116,7 +116,7 @@ async def selfdiagnosis(channel):
             time.sleep(wait*8)
             
             ##### 암호 입력
-            driver.find_element_by_xpath('//*[@id="WriteInfoForm"]/table/tbody/tr/td/input').click()
+            driver.find_element_by_xpath('//input[@id="password"]').click()
             
             time.sleep(wait*8)
             
