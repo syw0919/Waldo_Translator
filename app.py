@@ -143,7 +143,7 @@ async def selfdiagnosis(channel):
             await channel.send('자가진단을 완료하였습니다.')
             ret = 0
 
-        except:
+        except Exception as ex:
             print(f"[ Error ]", *sys.exc_info(), "\n", sep="\n")
             await channel.send(f"```\n[ Error ]\n{str(ex).rstrip()}\n```")
 
